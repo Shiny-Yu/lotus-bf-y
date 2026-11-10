@@ -72,8 +72,7 @@ export default function App () {
           --primary-800: #1e40af;
           --border: #e5e7eb;
         }
-        .app { padding-right: 0 !important; }
-        .app__grid { width: 100vw; max-width: 100vw; }
+        .app__grid { width: 100%; max-width: 100%; }
         .card input[type="text"],
         .card input[type="search"],
         .card input[type="number"],

@@ -25,7 +25,7 @@ body {
 .app {
   max-width: none;
   margin: 0;
-  padding: 18px 0 18px 18px;
+  padding: 18px;
 }
 
 .app__header { margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
@@ -47,6 +47,7 @@ body {
 
 .app__grid { display: flex; gap: 0; width: 100%; }
 .app__grid > .card { flex: 1 1 0; min-width: 240px; overflow: auto; }
+.app { overflow-x: hidden; }
 
 .resizer { width: 8px; cursor: col-resize; position: relative; user-select: none; touch-action: none; align-self: stretch; background: transparent; }
 .resizer::after { content:''; position:absolute; top:0; bottom:0; left:3px; width:2px; background: var(--border); transition: background .15s ease; }

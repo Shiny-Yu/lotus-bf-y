@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { apiUrl } from '../api'
 
 function classNames (...xs) { return xs.filter(Boolean).join(' ') }
@@ -29,6 +29,15 @@ export function Studies ({ query }) {
   const pageSize = 20
 
   useEffect(() => { setPage(1) }, [query])
+
+  // When the page changes, bring the top of the results into view.
+  const rootRef = useRef(null)
+  const prevPage = useRef(page)
+  useEffect(() => {
+    if (prevPage.current === page) return
+    prevPage.current = page
+    rootRef.current?.scrollIntoView({ block: 'start' })
+  }, [page])
 
   useEffect(() => {
     if (!query) return
@@ -78,7 +87,7 @@ export function Studies ({ query }) {
   const pageRows = sorted.slice((page - 1) * pageSize, page * pageSize)
 
   return (
-    <div className='flex flex-col rounded-2xl border'>
+    <div ref={rootRef} className='flex flex-col rounded-2xl border'>
       <div className='flex items-center justify-between p-3'>
         <div className='card__title'>Studies</div>
         {query && !loading && !err && rows.length > 0 && (
